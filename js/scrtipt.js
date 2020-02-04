@@ -13,17 +13,28 @@ seconds = time.getSeconds();
 
 const hour = function(n){
   console.log(n % 100);
-  if(n % 10 <= 1 && n % 10 > 0){
+  if(n === 1 || (n > 19 && n % 10 === 1)){
     return "час"
-  } else if ((n % 100 < 5 && n % 100 > 1) ||(n % 100 > 21)){
+  } else if (((n > 1 && n < 5) || (n > 19 && n % 10 > 1 && n % 10 < 5))){
     return "часа"
-  } else if ((n % 100 === 0) || ( 5 <= n % 100 <= 19)){
+  } else{
     return "часов"
   }
 };
 
+const minuteAndSecond = function(n){
+  console.log(n % 100);
+  if(n === 1 || (n > 19 && n % 10 === 1)){
+    return "а"
+  } else if (((n > 1 && n < 5) || (n > 19 && n % 10 > 1 && n % 10 < 5))){
+    return "ы"
+  } else{
+    return ""
+  }
+};
+
 document.getElementById('timeA').innerHTML = 'Сегодня ' + weekday + ', ' + day + ' ' + month + ' ' + year 
-  + ' года, '+ hours  + hour(hours) + ' ' + minutes + ' ' +  ' минут ' + seconds + ' секунд';
+  + ' года, '+ hours + ' ' + hour(hours) + ' ' + minutes + ' минут' + minuteAndSecond(minutes) + ' ' + seconds + ' секунд' +minuteAndSecond(seconds);
 
 function zero(value)
 {
